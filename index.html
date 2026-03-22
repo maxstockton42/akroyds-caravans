@@ -1,0 +1,2241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Akroyd's Caravan Storage — established over 30 years. Secure, CCTV-monitored hardstanding storage for caravans, motorhomes, boats &amp; cars. Open 8am–6:30pm 7 days. Call 07879 667 486.">
+  <title>Akroyd's Caravan Storage | Secure, Trusted Caravan Storage</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@700;800&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+
+  <style>
+    /* =========================================
+       DESIGN TOKENS — 4px base spacing grid
+    ========================================= */
+    :root {
+      /* Brand */
+      --lime:         #CDD500;
+      --lime-hover:   #b9c000;
+      --lime-tint:    rgba(205, 213, 0, 0.12);
+      --bronze:       #A68955;
+      --bronze-light: #c4a876;
+      --bronze-tint:  rgba(166, 137, 85, 0.1);
+
+      /* Neutrals */
+      --ink:          #1A1A18;
+      --ink-80:       #3a3a37;
+      --ink-50:       #737370;
+      --ink-30:       #a8a8a5;
+      --off-white:    #F4F3EF;
+      --warm-white:   #FAFAF8;
+      --white:        #FFFFFF;
+      --rule:         #E6E5E1;
+
+      /* Shadows */
+      --shadow-xs:    0 1px 2px rgba(0,0,0,0.06);
+      --shadow-sm:    0 2px 8px rgba(0,0,0,0.07), 0 1px 2px rgba(0,0,0,0.04);
+      --shadow-md:    0 8px 24px rgba(0,0,0,0.09), 0 2px 8px rgba(0,0,0,0.05);
+      --shadow-lg:    0 20px 48px rgba(0,0,0,0.12), 0 4px 16px rgba(0,0,0,0.06);
+
+      /* Spacing — 4px increments */
+      --s1:  4px;
+      --s2:  8px;
+      --s3:  12px;
+      --s4:  16px;
+      --s5:  20px;
+      --s6:  24px;
+      --s7:  28px;
+      --s8:  32px;
+      --s10: 40px;
+      --s12: 48px;
+      --s16: 64px;
+      --s20: 80px;
+      --s24: 96px;
+      --s32: 128px;
+
+      /* Radii */
+      --r1: 4px;
+      --r2: 8px;
+      --r3: 12px;
+      --r4: 16px;
+      --r5: 24px;
+
+      /* Nav */
+      --nav-h: 76px;
+      --max-w: 1200px;
+    }
+
+    /* =========================================
+       RESET
+    ========================================= */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      color: var(--ink);
+      background: var(--white);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    img { max-width: 100%; height: auto; display: block; }
+    a { color: inherit; text-decoration: none; }
+    ul { list-style: none; }
+    button { font-family: inherit; }
+    select { font-family: inherit; }
+    h1, h2, h3, h4 {
+      font-family: 'Inter', sans-serif;
+      line-height: 1.15;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    /* =========================================
+       SKIP LINK
+    ========================================= */
+    .skip-link {
+      position: absolute;
+      top: -100px;
+      left: var(--s4);
+      z-index: 9999;
+      background: var(--lime);
+      color: var(--ink);
+      padding: var(--s3) var(--s5);
+      border-radius: var(--r2);
+      font-weight: 600;
+      font-size: 14px;
+      transition: top 0.2s;
+    }
+    .skip-link:focus { top: var(--s4); }
+
+    /* =========================================
+       CONTAINER
+    ========================================= */
+    .container {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 var(--s6);
+    }
+
+    /* =========================================
+       BUTTONS
+    ========================================= */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--s2);
+      padding: var(--s3) var(--s6);
+      border-radius: var(--r2);
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: background 0.2s ease, border-color 0.2s ease,
+                  box-shadow 0.2s ease, transform 0.15s ease, color 0.2s ease;
+      white-space: nowrap;
+      line-height: 1;
+    }
+    .btn:focus-visible {
+      outline: 3px solid var(--lime);
+      outline-offset: 3px;
+    }
+    .btn-primary {
+      background: var(--lime);
+      color: var(--ink);
+      border-color: var(--lime);
+    }
+    .btn-primary:hover {
+      background: var(--lime-hover);
+      border-color: var(--lime-hover);
+      box-shadow: 0 4px 16px rgba(205,213,0,0.45);
+      transform: translateY(-1px);
+    }
+    .btn-primary:active { transform: translateY(0); box-shadow: none; }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--ink);
+      border-color: var(--rule);
+    }
+    .btn-secondary:hover {
+      border-color: var(--ink-50);
+      background: var(--off-white);
+    }
+
+    .btn-ghost-dark {
+      background: rgba(255,255,255,0.08);
+      color: var(--white);
+      border-color: rgba(255,255,255,0.2);
+    }
+    .btn-ghost-dark:hover {
+      background: rgba(255,255,255,0.16);
+      border-color: rgba(255,255,255,0.4);
+    }
+
+    .btn-lg {
+      padding: var(--s4) var(--s8);
+      font-size: 16px;
+      border-radius: var(--r3);
+    }
+
+    /* =========================================
+       NAVIGATION
+    ========================================= */
+    .nav {
+      position: fixed;
+      inset: 0 0 auto 0;
+      z-index: 900;
+      height: var(--nav-h);
+      background: rgba(255,255,255,0.97);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--rule);
+      transition: box-shadow 0.3s ease;
+    }
+    .nav.raised { box-shadow: var(--shadow-md); }
+
+    .nav .container { height: 100%; }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 100%;
+      gap: var(--s8);
+    }
+    .nav-logo img {
+      height: 44px;
+      width: auto;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: var(--s7);
+    }
+    .nav-links a {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--ink-50);
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--ink); }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: var(--s3);
+    }
+    .nav-phone {
+      display: flex;
+      align-items: center;
+      gap: var(--s2);
+      font-weight: 600;
+      font-size: 14px;
+      color: var(--ink);
+      transition: color 0.2s;
+    }
+    .nav-phone:hover { color: var(--bronze); }
+    .nav-phone i { color: var(--bronze); }
+
+    .nav-burger {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: var(--s2);
+      color: var(--ink);
+      border-radius: var(--r1);
+    }
+    .nav-burger:focus-visible { outline: 2px solid var(--lime); }
+
+    /* Mobile Menu */
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      inset: var(--nav-h) 0 0 0;
+      background: var(--white);
+      z-index: 899;
+      padding: var(--s6);
+      flex-direction: column;
+      gap: var(--s1);
+      overflow-y: auto;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      display: block;
+      padding: var(--s4) var(--s2);
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--ink);
+      border-bottom: 1px solid var(--rule);
+      transition: color 0.2s;
+    }
+    .mobile-menu a:last-of-type { border-bottom: none; }
+    .mobile-menu a:hover { color: var(--bronze); }
+    .mobile-menu-ctas {
+      margin-top: var(--s6);
+      display: flex;
+      flex-direction: column;
+      gap: var(--s3);
+    }
+    .mobile-menu-ctas .btn { justify-content: center; }
+
+    /* =========================================
+       HERO
+    ========================================= */
+    .hero {
+      padding-top: var(--nav-h);
+      background: var(--off-white);
+      overflow: hidden;
+      position: relative;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: 0 0 0 48%;
+      background: var(--white);
+      clip-path: polygon(6% 0, 100% 0, 100% 100%, 0% 100%);
+      pointer-events: none;
+    }
+    .hero-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--s16);
+      align-items: center;
+      padding: var(--s20) 0;
+      position: relative;
+      z-index: 1;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--s2);
+      background: var(--lime);
+      color: var(--ink);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      padding: var(--s1) var(--s3);
+      border-radius: 20px;
+      margin-bottom: var(--s5);
+    }
+    .hero-title {
+      font-size: clamp(38px, 4.5vw, 64px);
+      color: var(--ink);
+      margin-bottom: var(--s6);
+    }
+    .hero-title em {
+      font-style: normal;
+      color: var(--bronze);
+    }
+    .hero-subtitle {
+      font-size: 17px;
+      color: var(--ink-50);
+      line-height: 1.75;
+      margin-bottom: var(--s8);
+      max-width: 440px;
+    }
+    .hero-ctas {
+      display: flex;
+      gap: var(--s4);
+      flex-wrap: wrap;
+      margin-bottom: var(--s10);
+    }
+    .hero-trust {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--s6);
+    }
+    .trust-pill {
+      display: flex;
+      align-items: center;
+      gap: var(--s2);
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--ink-50);
+    }
+    .trust-pill i { color: var(--lime-hover); }
+
+    /* Hero visual */
+    .hero-visual {
+      display: flex;
+      flex-direction: column;
+    }
+    .hero-img {
+      width: 100%;
+      border-radius: var(--r5);
+      overflow: hidden;
+      order: 2;
+    }
+    .hero-img img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .hero-float-card {
+      order: 1;
+      align-self: flex-start;
+      margin-left: var(--s6);
+      margin-bottom: calc(-1 * var(--s5));
+      position: relative;
+      z-index: 2;
+      background: var(--ink);
+      color: var(--white);
+      padding: var(--s4) var(--s6);
+      border-radius: var(--r4);
+      box-shadow: var(--shadow-lg);
+      min-width: 160px;
+    }
+    .hero-float-num {
+      font-family: 'Inter', sans-serif;
+      font-size: 32px;
+      font-weight: 800;
+      color: var(--lime);
+      line-height: 1;
+      margin-bottom: var(--s1);
+    }
+    .hero-float-label {
+      font-size: 12px;
+      color: rgba(255,255,255,0.55);
+      font-weight: 400;
+    }
+
+    .hero-float-card-2 {
+      order: 3;
+      align-self: flex-end;
+      margin-right: var(--s6);
+      margin-top: calc(-1 * var(--s5));
+      position: relative;
+      z-index: 2;
+      background: var(--white);
+      padding: var(--s3) var(--s5);
+      border-radius: var(--r3);
+      box-shadow: var(--shadow-md);
+      display: flex;
+      align-items: center;
+      gap: var(--s3);
+      border: 1px solid var(--rule);
+    }
+    .hero-float-card-2-icon {
+      width: 36px;
+      height: 36px;
+      background: var(--lime-tint);
+      border-radius: var(--r1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--lime-hover);
+      flex-shrink: 0;
+    }
+    .hero-float-card-2-text { font-size: 12px; color: var(--ink-50); line-height: 1.4; }
+    .hero-float-card-2-text strong { display: block; font-size: 14px; color: var(--ink); font-weight: 600; }
+
+    .hero-map {
+      order: 4;
+      width: 100%;
+      border-radius: var(--r5);
+      overflow: hidden;
+      margin-top: var(--s5);
+      position: relative;
+      height: 280px;
+    }
+    .hero-map iframe {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      border: 0;
+    }
+
+    /* =========================================
+       STATS
+    ========================================= */
+    .stats {
+      background: var(--ink);
+      padding: var(--s12) 0;
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+    }
+    .stat {
+      text-align: center;
+      padding: var(--s4) var(--s8);
+      border-right: 1px solid rgba(255,255,255,0.08);
+    }
+    .stat:last-child {
+      border-right: none;
+    }
+    .stat-num {
+      font-family: 'Inter', sans-serif;
+      font-size: clamp(36px, 4vw, 52px);
+      font-weight: 800;
+      color: var(--lime);
+      line-height: 1;
+      margin-bottom: var(--s2);
+    }
+    .stat-label {
+      font-size: 14px;
+      color: rgba(255,255,255,0.5);
+    }
+
+    /* =========================================
+       SECTION BASE
+    ========================================= */
+    .section { padding: var(--s24) 0; }
+    .section-alt { background: var(--off-white); }
+
+    .section-header {
+      text-align: center;
+      max-width: 600px;
+      margin: 0 auto var(--s16);
+    }
+    .eyebrow {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--bronze);
+      background: var(--bronze-tint);
+      border: 1px solid rgba(166, 137, 85, 0.2);
+      padding: var(--s1) var(--s3);
+      border-radius: 20px;
+      margin-bottom: var(--s4);
+    }
+    .section-title {
+      font-size: clamp(28px, 3.5vw, 44px);
+      color: var(--ink);
+      margin-bottom: var(--s4);
+    }
+    .section-desc {
+      font-size: 16px;
+      color: var(--ink-50);
+      line-height: 1.75;
+    }
+    .section-desc a { color: var(--bronze); font-weight: 600; }
+    .section-desc a:hover { text-decoration: underline; }
+
+    /* =========================================
+       FEATURE CARDS (Why Us)
+    ========================================= */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--s5);
+    }
+    .feature-card {
+      background: var(--white);
+      border: 1px solid var(--rule);
+      border-radius: var(--r4);
+      padding: var(--s8);
+      position: relative;
+      overflow: hidden;
+      transition: box-shadow 0.3s ease, transform 0.3s ease, border-color 0.3s ease;
+    }
+    .feature-card::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--lime);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.35s ease;
+    }
+    .feature-card:hover {
+      box-shadow: var(--shadow-lg);
+      transform: translateY(-4px);
+      border-color: rgba(0,0,0,0.03);
+    }
+    .feature-card:hover::after { transform: scaleX(1); }
+    .feature-card-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: var(--r2);
+      background: var(--off-white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--bronze);
+      margin-bottom: var(--s5);
+      transition: background 0.3s, color 0.3s;
+    }
+    .feature-card:hover .feature-card-icon {
+      background: var(--lime);
+      color: var(--ink);
+    }
+    .feature-card h3 {
+      font-size: 18px;
+      margin-bottom: var(--s3);
+    }
+    .feature-card p {
+      font-size: 14px;
+      color: var(--ink-50);
+      line-height: 1.7;
+    }
+
+    /* =========================================
+       HOW IT WORKS
+    ========================================= */
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--s8);
+      position: relative;
+    }
+    .process-grid::before {
+      content: '';
+      position: absolute;
+      top: 35px;
+      left: calc(16.67% + 20px);
+      right: calc(16.67% + 20px);
+      height: 2px;
+      background: repeating-linear-gradient(
+        90deg,
+        var(--lime) 0,
+        var(--lime) 6px,
+        transparent 6px,
+        transparent 14px
+      );
+    }
+    .process-step { text-align: center; }
+    .process-num {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      background: var(--lime);
+      color: var(--ink);
+      font-family: 'Inter', sans-serif;
+      font-size: 26px;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto var(--s6);
+      position: relative;
+      z-index: 1;
+      box-shadow: 0 0 0 8px rgba(205,213,0,0.12);
+    }
+    .process-step h3 { font-size: 19px; margin-bottom: var(--s3); }
+    .process-step p { font-size: 14px; color: var(--ink-50); line-height: 1.7; max-width: 280px; margin: 0 auto; }
+
+    /* =========================================
+       STORAGE OPTIONS
+    ========================================= */
+    .storage-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--s5);
+    }
+    .storage-card {
+      border: 1px solid var(--rule);
+      border-radius: var(--r4);
+      overflow: hidden;
+      background: var(--white);
+      display: flex;
+      flex-direction: column;
+      transition: box-shadow 0.3s, transform 0.3s, border-color 0.3s;
+    }
+    .storage-card:hover {
+      box-shadow: var(--shadow-lg);
+      transform: translateY(-4px);
+      border-color: transparent;
+    }
+    .storage-card.featured {
+      border-color: var(--lime);
+      border-width: 2px;
+    }
+    .storage-card-img {
+      height: 196px;
+      position: relative;
+      overflow: hidden;
+    }
+    .storage-card-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .storage-card.featured .storage-card-img {
+      background: linear-gradient(135deg, #d4dc00, #aab800);
+    }
+    .storage-badge {
+      position: absolute;
+      top: var(--s3);
+      right: var(--s3);
+      background: var(--ink);
+      color: var(--white);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      padding: var(--s1) var(--s3);
+      border-radius: 20px;
+    }
+    .storage-card.featured .storage-badge {
+      background: var(--white);
+      color: var(--ink);
+    }
+    .storage-card-body {
+      padding: var(--s6);
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .storage-card-body h3 { font-size: 20px; margin-bottom: var(--s3); }
+    .storage-card-body p { font-size: 14px; color: var(--ink-50); line-height: 1.65; margin-bottom: var(--s5); }
+    .storage-features {
+      display: flex;
+      flex-direction: column;
+      gap: var(--s2);
+      margin-bottom: var(--s6);
+      flex: 1;
+    }
+    .storage-feature {
+      display: flex;
+      align-items: center;
+      gap: var(--s2);
+      font-size: 14px;
+      color: var(--ink-80);
+    }
+    .storage-feature i { color: var(--lime-hover); flex-shrink: 0; }
+    .storage-card-body .btn { justify-content: center; }
+
+    /* =========================================
+       SECURITY
+    ========================================= */
+    .security-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--s16);
+      align-items: center;
+    }
+    .security-img {
+      border-radius: var(--r5);
+      overflow: hidden;
+    }
+
+    .security-content .section-title { text-align: left; }
+    .security-lead {
+      font-size: 16px;
+      color: var(--ink-50);
+      line-height: 1.75;
+      margin: var(--s4) 0 var(--s8);
+    }
+    .security-items {
+      display: flex;
+      flex-direction: column;
+      gap: var(--s3);
+    }
+    .security-item {
+      display: flex;
+      align-items: center;
+      gap: var(--s4);
+      padding: var(--s4);
+      border-radius: var(--r2);
+      background: var(--lime-tint);
+    }
+    .security-item-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: var(--r1);
+      background: var(--lime);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--ink);
+      flex-shrink: 0;
+    }
+    .security-item-text h4 {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: var(--s1);
+    }
+    .security-item-text p { font-size: 13px; color: var(--ink-50); line-height: 1.6; }
+
+    /* =========================================
+       TESTIMONIALS
+    ========================================= */
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--s5);
+    }
+    .testimonial-card {
+      background: var(--white);
+      border: 1px solid var(--rule);
+      border-radius: var(--r4);
+      padding: var(--s8);
+      display: flex;
+      flex-direction: column;
+      transition: box-shadow 0.3s, transform 0.3s, border-color 0.3s;
+    }
+    .testimonial-card:hover {
+      box-shadow: var(--shadow-lg);
+      transform: translateY(-3px);
+      border-color: transparent;
+    }
+    .stars {
+      display: flex;
+      gap: 2px;
+      color: var(--lime);
+      margin-bottom: var(--s5);
+    }
+    .stars svg { fill: var(--lime); stroke: var(--lime); }
+    .quote {
+      font-size: 15px;
+      color: var(--ink-80);
+      line-height: 1.75;
+      flex: 1;
+      margin-bottom: var(--s6);
+      font-style: italic;
+    }
+    .quote::before {
+      display: none;
+    }
+    .reviewer {
+      display: flex;
+      align-items: center;
+      gap: var(--s3);
+    }
+    .reviewer-avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--off-white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      font-weight: 800;
+      color: var(--ink-50);
+      border: 1px solid var(--rule);
+      flex-shrink: 0;
+    }
+    .reviewer-name {
+      font-weight: 600;
+      font-size: 14px;
+      margin-bottom: 2px;
+    }
+    .reviewer-since { font-size: 12px; color: var(--ink-30); }
+
+    /* =========================================
+       FAQ
+    ========================================= */
+    .faq-list {
+      max-width: 720px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: var(--s3);
+    }
+    .faq-item {
+      border: 1px solid var(--rule);
+      border-radius: var(--r3);
+      background: var(--white);
+      overflow: hidden;
+    }
+    .faq-trigger {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--s4);
+      padding: var(--s5) var(--s6);
+      background: none;
+      border: none;
+      text-align: left;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--ink);
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .faq-trigger:hover { background: var(--off-white); }
+    .faq-trigger:focus-visible {
+      outline: 2px solid var(--lime);
+      outline-offset: -2px;
+      border-radius: var(--r3);
+    }
+    .faq-chevron {
+      flex-shrink: 0;
+      color: var(--bronze);
+      transition: transform 0.3s ease;
+    }
+    .faq-item.open .faq-chevron { transform: rotate(180deg); }
+    .faq-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease;
+    }
+    .faq-item.open .faq-body { max-height: 300px; }
+    .faq-content {
+      padding: 0 var(--s6) var(--s6);
+      font-size: 15px;
+      color: var(--ink-50);
+      line-height: 1.75;
+    }
+    .faq-content a { color: var(--bronze); font-weight: 500; }
+
+    /* =========================================
+       CTA STRIP
+    ========================================= */
+    .cta-strip {
+      background: var(--ink);
+      padding: var(--s20) 0;
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-strip::before {
+      content: '';
+      position: absolute;
+      top: -120px; right: -80px;
+      width: 440px; height: 440px;
+      background: radial-gradient(circle, rgba(205,213,0,0.08) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .cta-strip::after {
+      content: '';
+      position: absolute;
+      bottom: -100px; left: 0;
+      width: 320px; height: 320px;
+      background: radial-gradient(circle, rgba(166,137,85,0.1) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .cta-strip-inner {
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+    .cta-strip-title {
+      font-size: clamp(28px, 4vw, 48px);
+      color: var(--white);
+      margin-bottom: var(--s4);
+    }
+    .cta-strip-title em {
+      font-style: normal;
+      color: var(--lime);
+    }
+    .cta-strip-sub {
+      font-size: 17px;
+      color: rgba(255,255,255,0.55);
+      margin-bottom: var(--s10);
+      max-width: 480px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .cta-strip-buttons {
+      display: flex;
+      justify-content: center;
+      gap: var(--s4);
+      flex-wrap: wrap;
+    }
+    .cta-strip-note {
+      margin-top: var(--s8);
+      font-size: 14px;
+      color: rgba(255,255,255,0.35);
+    }
+    .cta-strip-note a { color: var(--lime); font-weight: 500; }
+    .cta-strip-note a:hover { text-decoration: underline; }
+
+    /* =========================================
+       CONTACT
+    ========================================= */
+    .contact-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--s5);
+      margin-bottom: var(--s5);
+    }
+    .contact-cards .feature-card {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      text-align: left;
+    }
+    .contact-cards .feature-card h3 { text-align: left; }
+    .contact-cards .feature-card p {
+      text-align: left;
+      flex: 1;
+      margin-bottom: var(--s6);
+    }
+    .contact-bottom {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--s5);
+      align-items: stretch;
+    }
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      gap: var(--s6);
+    }
+    .contact-detail {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--s4);
+    }
+    .contact-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: var(--r2);
+      background: var(--off-white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--bronze);
+      flex-shrink: 0;
+      border: 1px solid var(--rule);
+    }
+    .contact-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--ink-30);
+      margin-bottom: var(--s1);
+    }
+    .contact-value {
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--ink);
+    }
+    .contact-value a { transition: color 0.2s; }
+    .contact-value a:hover { color: var(--bronze); }
+
+    .hours-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 14px;
+      padding: var(--s3) 0;
+      border-bottom: 1px solid var(--rule);
+      color: var(--ink-80);
+      width: 100%;
+    }
+    .hours-row:last-child { border-bottom: none; }
+    .hours-row span:last-child { font-weight: 600; color: var(--ink); }
+
+    .map-placeholder {
+      border-radius: var(--r3);
+      min-height: 300px;
+      border: 1px solid var(--rule);
+      overflow: hidden;
+      position: relative;
+    }
+    .map-placeholder iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    /* Form */
+    .form-card {
+      background: var(--white);
+      border: 1px solid var(--rule);
+      border-radius: var(--r5);
+      padding: var(--s8);
+      box-shadow: var(--shadow-sm);
+    }
+    .form-card h3 { font-size: 22px; margin-bottom: var(--s2); }
+    .form-card-sub { font-size: 14px; color: var(--ink-50); margin-bottom: var(--s7); }
+    .form-group { margin-bottom: var(--s5); }
+    .form-label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--ink-80);
+      margin-bottom: var(--s2);
+    }
+    .form-control {
+      width: 100%;
+      padding: var(--s3) var(--s4);
+      border: 1.5px solid var(--rule);
+      border-radius: var(--r2);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px;
+      color: var(--ink);
+      background: var(--white);
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      appearance: none;
+      -webkit-appearance: none;
+    }
+    .form-control::placeholder { color: var(--ink-30); }
+    .form-control:hover { border-color: var(--ink-30); }
+    .form-control:focus {
+      border-color: var(--lime-hover);
+      box-shadow: 0 0 0 3px rgba(205,213,0,0.18);
+    }
+    textarea.form-control { resize: vertical; min-height: 112px; }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--s4);
+    }
+    .form-submit { width: 100%; justify-content: center; }
+    .form-note {
+      text-align: center;
+      font-size: 12px;
+      color: var(--ink-30);
+      margin-top: var(--s4);
+    }
+
+    /* Select arrow */
+    .form-select-wrapper { position: relative; }
+    .form-select-wrapper::after {
+      content: '';
+      position: absolute;
+      right: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      border: 5px solid transparent;
+      border-top-color: var(--ink-50);
+      pointer-events: none;
+    }
+
+    /* =========================================
+       FOOTER
+    ========================================= */
+    .footer {
+      background: var(--ink);
+      padding: var(--s20) 0 var(--s8);
+    }
+    .footer-top {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: var(--s12);
+      padding-bottom: var(--s12);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      margin-bottom: var(--s8);
+    }
+    .footer-logo {
+      height: 40px;
+      width: auto;
+      margin-bottom: var(--s5);
+    }
+    .footer-tagline {
+      font-size: 13px;
+      color: rgba(255,255,255,0.4);
+      line-height: 1.75;
+      max-width: 260px;
+      margin-bottom: var(--s6);
+    }
+    .footer-contacts {
+      display: flex;
+      flex-direction: column;
+      gap: var(--s3);
+    }
+    .footer-contact-link {
+      display: flex;
+      align-items: center;
+      gap: var(--s2);
+      font-size: 13px;
+      color: rgba(255,255,255,0.55);
+      transition: color 0.2s;
+    }
+    .footer-contact-link:hover { color: var(--lime); }
+    .footer-contact-link i { color: var(--bronze); flex-shrink: 0; }
+
+    .footer-col-title {
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.9);
+      margin-bottom: var(--s5);
+    }
+    .footer-links {
+      display: flex;
+      flex-direction: column;
+      gap: var(--s3);
+    }
+    .footer-links a {
+      font-size: 13px;
+      color: rgba(255,255,255,0.45);
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--lime); }
+
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--s4);
+      flex-wrap: wrap;
+    }
+    .footer-copy { font-size: 12px; color: rgba(255,255,255,0.25); }
+    .footer-legal { display: flex; gap: var(--s6); }
+    .footer-legal a {
+      font-size: 12px;
+      color: rgba(255,255,255,0.25);
+      transition: color 0.2s;
+    }
+    .footer-legal a:hover { color: rgba(255,255,255,0.6); }
+
+    /* =========================================
+       BACK TO TOP
+    ========================================= */
+    .back-top {
+      position: fixed;
+      bottom: var(--s6);
+      right: var(--s6);
+      z-index: 800;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--lime);
+      color: var(--ink);
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: var(--shadow-md);
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity 0.3s, transform 0.3s, background 0.2s;
+    }
+    .back-top.show { opacity: 1; transform: translateY(0); }
+    .back-top:hover { background: var(--lime-hover); }
+    .back-top:focus-visible { outline: 3px solid var(--lime); outline-offset: 2px; }
+
+    /* =========================================
+       SCROLL ANIMATIONS
+    ========================================= */
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    .reveal.in { opacity: 1; transform: translateY(0); }
+    .reveal-d1 { transition-delay: 0.1s; }
+    .reveal-d2 { transition-delay: 0.2s; }
+    .reveal-d3 { transition-delay: 0.3s; }
+    .reveal-d4 { transition-delay: 0.4s; }
+    .reveal-d5 { transition-delay: 0.5s; }
+
+    /* =========================================
+       LIVE BADGE
+    ========================================= */
+    .live-dot {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #22c55e;
+      animation: blink 2s ease-in-out infinite;
+    }
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+
+    /* =========================================
+       RESPONSIVE
+    ========================================= */
+    @media (max-width: 1024px) {
+      .features-grid { grid-template-columns: repeat(2, 1fr); }
+      .testimonials-grid { grid-template-columns: repeat(2, 1fr); }
+      .storage-grid { grid-template-columns: repeat(2, 1fr); }
+      .footer-top { grid-template-columns: 1fr 1fr; gap: var(--s8); }
+    }
+
+    @media (max-width: 768px) {
+      :root { --nav-h: 68px; }
+
+      .nav-links, .nav-phone, .nav-cta { display: none; }
+      .nav-burger { display: flex; }
+
+      .hero::after { display: none; }
+      .hero-inner {
+        grid-template-columns: 1fr;
+        gap: var(--s10);
+        padding: var(--s12) 0;
+      }
+
+      .stats-grid { grid-template-columns: repeat(2, 1fr); row-gap: 0; }
+      .stat:nth-child(2) { border-right: none; }
+      .stat:nth-child(3) { border-right: 1px solid rgba(255,255,255,0.08); }
+      .stat:nth-child(1),
+      .stat:nth-child(2) { padding-bottom: var(--s10); border-bottom: 1px solid rgba(255,255,255,0.08); }
+      .stat:nth-child(3),
+      .stat:nth-child(4) { padding-top: var(--s10); }
+
+      .features-grid,
+      .process-grid,
+      .storage-grid,
+      .testimonials-grid { grid-template-columns: 1fr; }
+
+      .process-grid::before { display: none; }
+
+      .security-inner { grid-template-columns: 1fr; gap: var(--s10); }
+      .security-content .section-title { font-size: 28px; }
+
+      .contact-cards { grid-template-columns: 1fr; }
+      .contact-bottom { grid-template-columns: 1fr; }
+      .contact-cards .feature-card p { margin-bottom: var(--s5); }
+
+      .footer-top { grid-template-columns: 1fr; gap: var(--s8); }
+      .footer-bottom { flex-direction: column; text-align: center; }
+
+      .cta-strip-buttons { flex-direction: column; align-items: center; }
+
+      .section { padding: var(--s16) 0; }
+    }
+
+    @media (max-width: 480px) {
+      .hero-ctas { flex-direction: column; }
+      .hero-ctas .btn { justify-content: center; }
+      .form-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<a href="#main" class="skip-link">Skip to main content</a>
+
+<!-- =========================================
+     NAVIGATION
+========================================= -->
+<header>
+  <nav class="nav" id="nav" aria-label="Main navigation">
+    <div class="container">
+      <div class="nav-inner">
+
+        <a href="#" class="nav-logo" aria-label="Akroyd's Caravan Storage – Home">
+          <img src="Logo.svg" alt="Akroyd's Caravan Storage" width="220" height="44">
+        </a>
+
+        <ul class="nav-links" role="list">
+          <li><a href="#why-us">Why Us</a></li>
+          <li><a href="#storage">Storage</a></li>
+          <li><a href="#security">Security</a></li>
+          <li><a href="#reviews">Reviews</a></li>
+          <li><a href="#faq">FAQs</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+
+        <div class="nav-actions">
+          <a href="tel:07879667486" class="nav-phone nav-cta" aria-label="Call 07879 667 486">
+            <i data-lucide="phone" width="15" height="15" aria-hidden="true"></i>
+            07879 667 486
+          </a>
+          <a href="#contact" class="btn btn-primary nav-cta">Get a Quote</a>
+          <button
+            class="nav-burger"
+            id="nav-burger"
+            aria-label="Open menu"
+            aria-expanded="false"
+            aria-controls="mobile-menu"
+          >
+            <i data-lucide="menu" width="24" height="24" aria-hidden="true"></i>
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile menu -->
+  <div class="mobile-menu" id="mobile-menu" role="dialog" aria-label="Navigation" aria-modal="true">
+    <a href="#why-us" class="m-link">Why Choose Us</a>
+    <a href="#storage" class="m-link">Storage Options</a>
+    <a href="#security" class="m-link">Security</a>
+    <a href="#reviews" class="m-link">Customer Reviews</a>
+    <a href="#faq" class="m-link">FAQs</a>
+    <a href="#contact" class="m-link">Contact Us</a>
+    <div class="mobile-menu-ctas">
+      <a href="tel:07879667486" class="btn btn-secondary">
+        <i data-lucide="phone" width="16" height="16" aria-hidden="true"></i>
+        07879 667 486
+      </a>
+      <a href="#contact" class="btn btn-primary">Get a Free Quote</a>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- =========================================
+       HERO
+  ========================================= -->
+  <section class="hero" aria-labelledby="hero-heading">
+    <div class="container">
+      <div class="hero-inner">
+
+        <div class="hero-content">
+          <div class="hero-badge" aria-hidden="true">
+            <i data-lucide="shield-check" width="13" height="13"></i>
+            Established Over 30 Years
+          </div>
+
+          <h1 class="hero-title" id="hero-heading">
+            Safe &amp; Secure<br>
+            Storage for Your<br>
+            <em>Caravan or Motorhome</em>
+          </h1>
+
+          <p class="hero-subtitle">
+            A family-run business established for over 30 years. Akroyd's offers
+            CCTV-monitored, fully hardstanding storage for caravans, motorhomes,
+            boats and cars — open 7 days a week, 8am to 6:30pm.
+          </p>
+
+          <div class="hero-ctas">
+            <a href="#contact" class="btn btn-primary btn-lg">
+              Check Availability
+              <i data-lucide="arrow-right" width="18" height="18" aria-hidden="true"></i>
+            </a>
+            <a href="tel:07879667486" class="btn btn-secondary btn-lg">
+              <i data-lucide="phone" width="18" height="18" aria-hidden="true"></i>
+              07879 667 486
+            </a>
+          </div>
+
+          <div class="hero-trust" role="list" aria-label="Key features">
+            <div class="trust-pill" role="listitem">
+              <i data-lucide="check-circle-2" width="15" height="15" aria-hidden="true"></i>
+              CCTV Monitored
+            </div>
+            <div class="trust-pill" role="listitem">
+              <i data-lucide="check-circle-2" width="15" height="15" aria-hidden="true"></i>
+              All Hardstanding
+            </div>
+            <div class="trust-pill" role="listitem">
+              <i data-lucide="check-circle-2" width="15" height="15" aria-hidden="true"></i>
+              Open 7 Days
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <div class="hero-img">
+            <img src="HeaderImage.jpg" alt="Aerial view of Akroyd's Caravan Storage site at Brooklands Farm, Offerton, Stockport">
+          </div>
+
+          <div class="hero-float-card" aria-hidden="true">
+            <div class="hero-float-num">30+</div>
+            <div class="hero-float-label">Years established</div>
+          </div>
+
+          <div class="hero-float-card-2" aria-hidden="true">
+            <div class="hero-float-card-2-icon">
+              <i data-lucide="video" width="18" height="18"></i>
+            </div>
+            <div class="hero-float-card-2-text">
+              <strong>CCTV Active</strong>
+              <span class="live-dot"></span> Monitoring now
+            </div>
+          </div>
+
+          <div class="hero-map">
+            <iframe src="https://maps.google.com/maps?q=Akroyds+Caravan+Storage,+Bean+Leach+Road,+Offerton,+Stockport,+SK2+5JE&t=&z=16&ie=UTF8&iwloc=B&output=embed"
+              title="Map showing Akroyd's Caravan Storage location" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================
+       STATS
+  ========================================= -->
+  <section class="stats" aria-label="Business at a glance">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat reveal">
+          <div class="stat-num">30+</div>
+          <div class="stat-label">Years established</div>
+        </div>
+        <div class="stat reveal reveal-d1">
+          <div class="stat-num">25 yrs</div>
+          <div class="stat-label">Longest serving customer</div>
+        </div>
+        <div class="stat reveal reveal-d2">
+          <div class="stat-num">7 days</div>
+          <div class="stat-label">Open every week, 8am–6:30pm</div>
+        </div>
+        <div class="stat reveal reveal-d3">
+          <div class="stat-num">24/7</div>
+          <div class="stat-label">Customer support &amp; CCTV</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================
+       WHY CHOOSE US
+  ========================================= -->
+  <section class="section" id="why-us" aria-labelledby="why-heading">
+    <div class="container">
+
+      <div class="section-header">
+        <span class="eyebrow">Why Choose Akroyd's</span>
+        <h2 class="section-title reveal" id="why-heading">Everything Your Vehicle Deserves</h2>
+        <p class="section-desc reveal reveal-d1">
+          Over 30 years of trusted, family-run storage — with some customers
+          who've been with us for 25 years. Here's what makes Akroyd's different.
+        </p>
+      </div>
+
+      <div class="features-grid">
+
+        <div class="feature-card reveal">
+          <div class="feature-card-icon" aria-hidden="true">
+            <i data-lucide="video" width="24" height="24"></i>
+          </div>
+          <h3>CCTV Surveillance</h3>
+          <p>Cameras cover the entire site around the clock — day, night, weekends and bank holidays. Your vehicle is always under watchful eyes.</p>
+        </div>
+
+        <div class="feature-card reveal reveal-d1">
+          <div class="feature-card-icon" aria-hidden="true">
+            <i data-lucide="shield" width="24" height="24"></i>
+          </div>
+          <h3>Palisade Security Fencing</h3>
+          <p>Heavy-duty palisade security fencing runs around the entire perimeter, providing a robust physical barrier against unauthorised access.</p>
+        </div>
+
+        <div class="feature-card reveal reveal-d2">
+          <div class="feature-card-icon" aria-hidden="true">
+            <i data-lucide="move-right" width="24" height="24"></i>
+          </div>
+          <h3>Extra Wide 3.2m Pitches</h3>
+          <p>Our pitches are an extra-wide 3.2 metres — giving you plenty of room to manoeuvre even the largest caravans and motorhomes with ease.</p>
+        </div>
+
+        <div class="feature-card reveal reveal-d1">
+          <div class="feature-card-icon" aria-hidden="true">
+            <i data-lucide="layers" width="24" height="24"></i>
+          </div>
+          <h3>All Hardstanding Pitches</h3>
+          <p>Every single pitch on our site is hardstanding — no muddy ground, no rocking, no damage to your vehicle's chassis or tyres.</p>
+        </div>
+
+        <div class="feature-card reveal reveal-d2">
+          <div class="feature-card-icon" aria-hidden="true">
+            <i data-lucide="truck" width="24" height="24"></i>
+          </div>
+          <h3>All Vehicle Types Welcome</h3>
+          <p>We store caravans, motorhomes, boats, cars and more. If you need somewhere secure for any vehicle, get in touch and we'll help.</p>
+        </div>
+
+        <div class="feature-card reveal reveal-d3">
+          <div class="feature-card-icon" aria-hidden="true">
+            <i data-lucide="users" width="24" height="24"></i>
+          </div>
+          <h3>Family-Run, Over 30 Years</h3>
+          <p>We're a local, family-run business established for over 30 years. Some of our customers have been with us for 25 years — that says it all.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================
+       HOW IT WORKS
+  ========================================= -->
+  <section class="section section-alt" id="how-it-works" aria-labelledby="process-heading">
+    <div class="container">
+
+      <div class="section-header">
+        <span class="eyebrow">Simple Process</span>
+        <h2 class="section-title reveal" id="process-heading">Up and Running in 3 Simple Steps</h2>
+        <p class="section-desc reveal reveal-d1">
+          From first contact to your caravan being safely stored, we've made the whole process as simple and stress-free as possible.
+        </p>
+      </div>
+
+      <div class="process-grid">
+        <div class="process-step reveal">
+          <div class="process-num" aria-hidden="true">1</div>
+          <h3>Get in Touch</h3>
+          <p>Call us, email, or fill in our enquiry form. Tell us your caravan's size and your requirements and we'll talk through the options.</p>
+        </div>
+        <div class="process-step reveal reveal-d2">
+          <div class="process-num" aria-hidden="true">2</div>
+          <h3>Visit the Site</h3>
+          <p>Come and see the facility for yourself. We'll show you around, answer any questions, and you can check the security measures in person.</p>
+        </div>
+        <div class="process-step reveal reveal-d4">
+          <div class="process-num" aria-hidden="true">3</div>
+          <h3>Store with Confidence</h3>
+          <p>Sign your contract, bring in your caravan, and relax knowing it's protected 365 days a year in our secure, monitored site.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- =========================================
+       STORAGE OPTIONS
+  ========================================= -->
+  <section class="section" id="storage" aria-labelledby="storage-heading">
+    <div class="container">
+
+      <div class="section-header">
+        <span class="eyebrow">What We Store</span>
+        <h2 class="section-title reveal" id="storage-heading">Storage for All Types of Vehicle</h2>
+        <p class="section-desc reveal reveal-d1">
+          We store caravans, motorhomes, boats, cars and more — all on extra-wide
+          hardstanding pitches with full CCTV coverage. <strong style="color:var(--bronze);">Limited spaces available — enquire today.</strong>
+        </p>
+      </div>
+
+      <div class="storage-grid">
+
+        <div class="storage-card reveal">
+          <div class="storage-card-img">
+            <img src="Cars-Other.jpg" alt="Caravans stored at Akroyd's storage site">
+          </div>
+          <div class="storage-card-body">
+            <h3>Caravans &amp; Motorhomes</h3>
+            <p>All sizes welcome, from compact tourers to large twin-axle models. Every pitch is hardstanding and an extra-wide 3.2 metres.</p>
+            <ul class="storage-features" aria-label="Included features">
+              <li class="storage-feature">
+                <i data-lucide="check" width="15" height="15" aria-hidden="true"></i>
+                Extra wide 3.2m hardstanding pitches
+              </li>
+              <li class="storage-feature">
+                <i data-lucide="check" width="15" height="15" aria-hidden="true"></i>
+                Easy vehicular access
+              </li>
+              <li class="storage-feature">
+                <i data-lucide="check" width="15" height="15" aria-hidden="true"></i>
+                CCTV monitored 24/7
+              </li>
+              <li class="storage-feature">
+                <i data-lucide="check" width="15" height="15" aria-hidden="true"></i>
+                Palisade security fencing
+              </li>
+            </ul>
+            <a href="#contact" class="btn btn-secondary">Check Availability</a>
+          </div>
+        </div>
+
+        <div class="storage-card featured reveal reveal-d2">
+          <div class="storage-card-img">
+            <img src="Boats-Trailers.jpg" alt="Boats and trailers in secure storage">
+            <div class="storage-badge">Also Available</div>
+          </div>
+          <div class="storage-card-body">
+            <h3>Boats &amp; Trailers</h3>
+            <p>Safe, secure hardstanding storage for boats and trailers of all sizes. The same CCTV monitoring and security fencing as all our other pitches.</p>
+            <ul class="storage-features" aria-label="Included features">
+              <li class="storage-feature">
+                <i data-lucide="check" width="15" height="15" aria-hidden="true"></i>
+                Hardstanding pitch
+              </li>
+              <li class="storage-feature">
+                <i data-lucide="check" width="15" height="15" aria-hidden="true"></i>
+                CCTV monitored 24/7
+              </li>
+              <li class="storage-feature">
+                <i data-lucide="check" width="15" height="15" aria-hidden="true"></i>
+                Easy vehicular access
+              </li>
+              <li class="storage-feature">
+                <i data-lucide="check" width="15" height="15" aria-hidden="true"></i>
+                Customer support 24/7
+              </li>
+            </ul>
+            <a href="#contact" class="btn btn-primary">Check Availability</a>
+          </div>
+        </div>
+
+        <div class="storage-card reveal reveal-d4">
+          <div class="storage-card-img">
+            <img src="Motorhomes.jpg" alt="Motorhomes in secure storage at Akroyd's">
+          </div>
+          <div class="storage-card-body">
+            <h3>Cars &amp; Other Vehicles</h3>
+            <p>Need somewhere secure for a car or other vehicle? We can help. Get in touch to discuss availability and find the right space for you.</p>
+            <ul class="storage-features" aria-label="What we offer">
+              <li class="storage-feature">
+                <i data-lucide="check" width="15" height="15" aria-hidden="true"></i>
+                Hardstanding pitch
+              </li>
+              <li class="storage-feature">
+                <i data-lucide="check" width="15" height="15" aria-hidden="true"></i>
+                CCTV monitored 24/7
+              </li>
+              <li class="storage-feature">
+                <i data-lucide="check" width="15" height="15" aria-hidden="true"></i>
+                Open 7 days, 8am–6:30pm
+              </li>
+              <li class="storage-feature">
+                <i data-lucide="check" width="15" height="15" aria-hidden="true"></i>
+                No-obligation enquiry
+              </li>
+            </ul>
+            <a href="tel:07879667486" class="btn btn-secondary">
+              <i data-lucide="phone" width="15" height="15" aria-hidden="true"></i>
+              Call to Enquire
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================
+       SECURITY
+  ========================================= -->
+  <section class="section section-alt" id="security" aria-labelledby="security-heading">
+    <div class="container">
+      <div class="security-inner">
+
+        <div class="security-img reveal" aria-label="Caravans stored at Akroyd's caravan storage site">
+          <img src="Image1.jpg" alt="Rows of caravans safely stored at Akroyd's Caravan Storage, Stockport" style="width:100%;height:auto;display:block;">
+        </div>
+
+        <div class="security-content reveal reveal-d1">
+          <span class="eyebrow">Site Security</span>
+          <h2 class="section-title" id="security-heading">Your Caravan's Safety Is Our Priority</h2>
+          <p class="security-lead">
+            After over 30 years in the business, we know what caravan and motorhome
+            owners need most: genuine peace of mind. Here's how we deliver it.
+          </p>
+
+          <div class="security-items">
+            <div class="security-item">
+              <div class="security-item-icon" aria-hidden="true">
+                <i data-lucide="video" width="20" height="20"></i>
+              </div>
+              <div class="security-item-text">
+                <h4>CCTV Surveillance</h4>
+                <p>Cameras cover all areas of the site 24 hours a day, 7 days a week — including overnight, weekends and bank holidays.</p>
+              </div>
+            </div>
+
+            <div class="security-item">
+              <div class="security-item-icon" aria-hidden="true">
+                <i data-lucide="shield" width="20" height="20"></i>
+              </div>
+              <div class="security-item-text">
+                <h4>Palisade Security Fencing</h4>
+                <p>Heavy-duty palisade fencing runs around the entire perimeter of the site — a recognised industry standard for high-security storage.</p>
+              </div>
+            </div>
+
+            <div class="security-item">
+              <div class="security-item-icon" aria-hidden="true">
+                <i data-lucide="key-round" width="20" height="20"></i>
+              </div>
+              <div class="security-item-text">
+                <h4>Registered Customers Only</h4>
+                <p>Site access is restricted to registered customers only. No unauthorised visitors can enter the storage area at any time.</p>
+              </div>
+            </div>
+
+            <div class="security-item">
+              <div class="security-item-icon" aria-hidden="true">
+                <i data-lucide="phone-call" width="20" height="20"></i>
+              </div>
+              <div class="security-item-text">
+                <h4>24/7 Customer Support</h4>
+                <p>Our team is available around the clock, 365 days a year — so if you ever have a concern, you're never left without support.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================
+       TESTIMONIALS
+  ========================================= -->
+  <section class="section" id="reviews" aria-labelledby="reviews-heading">
+    <div class="container">
+
+      <div class="section-header">
+        <span class="eyebrow">Customer Reviews</span>
+        <h2 class="section-title reveal" id="reviews-heading">Trusted by Caravan Owners Like You</h2>
+        <p class="section-desc reveal reveal-d1">
+          Don't just take our word for it — here's what customers have to say about storing their caravans with Akroyd's.
+        </p>
+      </div>
+
+      <div class="testimonials-grid">
+
+        <div class="testimonial-card reveal">
+          <div class="stars" aria-label="5 out of 5 stars">
+            <i data-lucide="star" width="17" height="17" aria-hidden="true"></i>
+            <i data-lucide="star" width="17" height="17" aria-hidden="true"></i>
+            <i data-lucide="star" width="17" height="17" aria-hidden="true"></i>
+            <i data-lucide="star" width="17" height="17" aria-hidden="true"></i>
+            <i data-lucide="star" width="17" height="17" aria-hidden="true"></i>
+          </div>
+          <p class="quote">We've been using Akroyd's for three years now and wouldn't go anywhere else. The site is impeccably maintained, the security is excellent, and it's always easy to access whenever we need it.</p>
+          <div class="reviewer">
+            <div class="reviewer-avatar" aria-hidden="true">DT</div>
+            <div>
+              <div class="reviewer-name">David &amp; Teresa M.</div>
+              <div class="reviewer-since">Customer since 2021</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card reveal reveal-d2">
+          <div class="stars" aria-label="5 out of 5 stars">
+            <i data-lucide="star" width="17" height="17" aria-hidden="true"></i>
+            <i data-lucide="star" width="17" height="17" aria-hidden="true"></i>
+            <i data-lucide="star" width="17" height="17" aria-hidden="true"></i>
+            <i data-lucide="star" width="17" height="17" aria-hidden="true"></i>
+            <i data-lucide="star" width="17" height="17" aria-hidden="true"></i>
+          </div>
+          <p class="quote">Brilliant service from start to finish. The team were so helpful when we first enquired and made the whole process effortless. We have complete peace of mind knowing our caravan is in safe hands.</p>
+          <div class="reviewer">
+            <div class="reviewer-avatar" aria-hidden="true">SJ</div>
+            <div>
+              <div class="reviewer-name">Sandra J.</div>
+              <div class="reviewer-since">Customer since 2022</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card reveal reveal-d4">
+          <div class="stars" aria-label="5 out of 5 stars">
+            <i data-lucide="star" width="17" height="17" aria-hidden="true"></i>
+            <i data-lucide="star" width="17" height="17" aria-hidden="true"></i>
+            <i data-lucide="star" width="17" height="17" aria-hidden="true"></i>
+            <i data-lucide="star" width="17" height="17" aria-hidden="true"></i>
+            <i data-lucide="star" width="17" height="17" aria-hidden="true"></i>
+          </div>
+          <p class="quote">Very competitive pricing for the level of security on offer. The CCTV coverage is comprehensive and it's obvious the owners genuinely care about this place. Couldn't recommend highly enough.</p>
+          <div class="reviewer">
+            <div class="reviewer-avatar" aria-hidden="true">RB</div>
+            <div>
+              <div class="reviewer-name">Robert B.</div>
+              <div class="reviewer-since">Customer since 2023</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================
+       FAQ
+  ========================================= -->
+  <section class="section section-alt" id="faq" aria-labelledby="faq-heading">
+    <div class="container">
+
+      <div class="section-header">
+        <span class="eyebrow">Common Questions</span>
+        <h2 class="section-title reveal" id="faq-heading">Frequently Asked Questions</h2>
+        <p class="section-desc reveal reveal-d1">
+          Can't find the answer you need?
+          Call us on <a href="tel:07879667486">07879 667 486</a> and we'll be happy to help.
+        </p>
+      </div>
+
+      <div class="faq-list" id="faq-list">
+
+        <div class="faq-item">
+          <button class="faq-trigger" aria-expanded="false">
+            What types of vehicle can you store?
+            <i data-lucide="chevron-down" width="20" height="20" class="faq-chevron" aria-hidden="true"></i>
+          </button>
+          <div class="faq-body" role="region">
+            <p class="faq-content">We store caravans, motorhomes, boats, cars and more. If you're unsure whether we can accommodate your vehicle, just give us a call on <a href="tel:07879667486">07879 667 486</a> and we'll be happy to advise.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-trigger" aria-expanded="false">
+            Are your pitches hardstanding?
+            <i data-lucide="chevron-down" width="20" height="20" class="faq-chevron" aria-hidden="true"></i>
+          </button>
+          <div class="faq-body" role="region">
+            <p class="faq-content">Yes — every single pitch on our site is hardstanding. There's no muddy ground, no risk to your tyres or chassis, and manoeuvring is easy thanks to our extra-wide 3.2 metre pitches.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-trigger" aria-expanded="false">
+            What are your opening hours?
+            <i data-lucide="chevron-down" width="20" height="20" class="faq-chevron" aria-hidden="true"></i>
+          </button>
+          <div class="faq-body" role="region">
+            <p class="faq-content">We're open 7 days a week, from 8am to 6:30pm — including weekends and bank holidays. Our CCTV and customer support line are available 24/7, 365 days a year.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-trigger" aria-expanded="false">
+            Is the site monitored overnight?
+            <i data-lucide="chevron-down" width="20" height="20" class="faq-chevron" aria-hidden="true"></i>
+          </button>
+          <div class="faq-body" role="region">
+            <p class="faq-content">Yes. Our CCTV system operates 24 hours a day, 365 days a year — including overnight, weekends, and all bank holidays. The palisade security fencing and access controls are in place around the clock.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-trigger" aria-expanded="false">
+            Do you have spaces available?
+            <i data-lucide="chevron-down" width="20" height="20" class="faq-chevron" aria-hidden="true"></i>
+          </button>
+          <div class="faq-body" role="region">
+            <p class="faq-content">We have limited spaces available and they do fill up — so we'd recommend getting in touch as soon as possible. Call us on <a href="tel:07879667486">07879 667 486</a> or fill in our enquiry form and we'll let you know what's available.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-trigger" aria-expanded="false">
+            How do I get a quote?
+            <i data-lucide="chevron-down" width="20" height="20" class="faq-chevron" aria-hidden="true"></i>
+          </button>
+          <div class="faq-body" role="region">
+            <p class="faq-content">Getting a quote is quick and simple. Call us on <a href="tel:07879667486">07879 667 486</a>, email <a href="mailto:akroydscaravans@gmail.com">akroydscaravans@gmail.com</a>, or fill in our enquiry form below. We'll get back to you as soon as possible.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================
+       CTA STRIP
+  ========================================= -->
+  <section class="cta-strip" aria-labelledby="cta-heading">
+    <div class="container">
+      <div class="cta-strip-inner">
+        <h2 class="cta-strip-title reveal" id="cta-heading">
+          Ready to Store Your Caravan<br>
+          <em>with Total Confidence?</em>
+        </h2>
+        <p class="cta-strip-sub reveal reveal-d1">
+          Get in touch today for a no-obligation quote.
+          We're a friendly, local team — we'd love to hear from you.
+        </p>
+        <div class="cta-strip-buttons reveal reveal-d2">
+          <a href="#contact" class="btn btn-primary btn-lg">
+            Get a Free Quote
+            <i data-lucide="arrow-right" width="18" height="18" aria-hidden="true"></i>
+          </a>
+          <a href="tel:07879667486" class="btn btn-ghost-dark btn-lg">
+            <i data-lucide="phone" width="18" height="18" aria-hidden="true"></i>
+            07879 667 486
+          </a>
+        </div>
+        <p class="cta-strip-note reveal reveal-d3">
+          Or email us at <a href="mailto:akroydscaravans@gmail.com">akroydscaravans@gmail.com</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================
+       CONTACT
+  ========================================= -->
+  <section class="section" id="contact" aria-labelledby="contact-heading">
+    <div class="container">
+
+      <div class="section-header">
+        <span class="eyebrow">Get in Touch</span>
+        <h2 class="section-title reveal" id="contact-heading">We'd Love to Hear From You</h2>
+        <p class="section-desc reveal reveal-d1">
+          Fill in our enquiry form and we'll respond as quickly as possible.
+          Or simply give us a call — we're always happy to chat.
+        </p>
+      </div>
+
+      <!-- Row 1: contact detail cards -->
+      <div class="contact-cards">
+
+        <div class="feature-card reveal">
+          <div class="feature-card-icon" aria-hidden="true">
+            <i data-lucide="phone" width="24" height="24"></i>
+          </div>
+          <h3>Phone</h3>
+          <p>Give us a call — we're always happy to chat about availability and answer any questions you have.</p>
+          <a href="tel:07879667486" class="btn btn-primary">
+            <i data-lucide="phone" width="15" height="15" aria-hidden="true"></i>
+            Call Now
+          </a>
+        </div>
+
+        <div class="feature-card reveal reveal-d2">
+          <div class="feature-card-icon" aria-hidden="true">
+            <i data-lucide="mail" width="24" height="24"></i>
+          </div>
+          <h3>Email</h3>
+          <p>Send us a message and we'll get back to you within 24 hours with availability and pricing information.</p>
+          <a href="mailto:akroydscaravans@gmail.com" class="btn btn-primary">
+            <i data-lucide="mail" width="15" height="15" aria-hidden="true"></i>
+            Email Now
+          </a>
+        </div>
+
+        <div class="feature-card reveal reveal-d4">
+          <div class="feature-card-icon" aria-hidden="true">
+            <i data-lucide="map-pin" width="24" height="24"></i>
+          </div>
+          <h3>Find Us</h3>
+          <p>Brooklands Farm, Bean Leach Road, Offerton, Stockport, Cheshire, SK2 5JE</p>
+          <a href="https://www.google.com/maps/search/Brooklands+Farm+Bean+Leach+Road+Offerton+Stockport+SK2+5JE" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+            <i data-lucide="navigation" width="15" height="15" aria-hidden="true"></i>
+            Get Directions
+          </a>
+        </div>
+
+      </div>
+
+      <!-- Row 2: hours + map -->
+      <div class="contact-bottom">
+
+        <div class="feature-card reveal">
+          <div class="feature-card-icon" aria-hidden="true">
+            <i data-lucide="clock-3" width="24" height="24"></i>
+          </div>
+          <h3>Opening Hours</h3>
+          <div class="hours-row">
+            <span>Monday – Sunday</span>
+            <span>8:00am – 6:30pm</span>
+          </div>
+          <div class="hours-row">
+            <span>Bank Holidays</span>
+            <span>8:00am – 6:30pm</span>
+          </div>
+          <div class="hours-row">
+            <span>CCTV &amp; Customer Support</span>
+            <span>24/7 — 365 days</span>
+          </div>
+        </div>
+
+        <div class="map-placeholder reveal reveal-d2">
+          <iframe
+            src="https://maps.google.com/maps?q=Akroyds+Caravan+Storage,+Bean+Leach+Road,+Offerton,+Stockport,+SK2+5JE&t=&z=16&ie=UTF8&iwloc=B&output=embed"
+            title="Akroyd's Caravan Storage location — Brooklands Farm, Bean Leach Road, Offerton, Stockport SK2 5JE"
+            allowfullscreen
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+          ></iframe>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- =========================================
+     FOOTER
+========================================= -->
+<footer role="contentinfo">
+  <div class="footer">
+    <div class="container">
+
+      <div class="footer-top">
+
+        <div>
+          <img src="Logo.svg" alt="Akroyd's Caravan Storage" class="footer-logo" width="200" height="40">
+          <p class="footer-tagline">Family-run caravan storage established for over 30 years. CCTV-monitored hardstanding pitches for caravans, motorhomes, boats and cars. Open 7 days, 8am–6:30pm.</p>
+          <div class="footer-contacts">
+            <a href="tel:07879667486" class="footer-contact-link">
+              <i data-lucide="phone" width="14" height="14" aria-hidden="true"></i>
+              07879 667 486
+            </a>
+            <a href="mailto:akroydscaravans@gmail.com" class="footer-contact-link">
+              <i data-lucide="mail" width="14" height="14" aria-hidden="true"></i>
+              akroydscaravans@gmail.com
+            </a>
+            <span class="footer-contact-link" style="cursor:default;">
+              <i data-lucide="map-pin" width="14" height="14" aria-hidden="true"></i>
+              Brooklands Farm, Bean Leach Road, Offerton, Stockport SK2 5JE
+            </span>
+          </div>
+        </div>
+
+        <div>
+          <h3 class="footer-col-title">Navigate</h3>
+          <ul class="footer-links">
+            <li><a href="#why-us">Why Choose Us</a></li>
+            <li><a href="#storage">Storage Options</a></li>
+            <li><a href="#security">Security</a></li>
+            <li><a href="#reviews">Reviews</a></li>
+            <li><a href="#faq">FAQs</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="footer-col-title">Storage</h3>
+          <ul class="footer-links">
+            <li><a href="#storage">Standard Storage</a></li>
+            <li><a href="#storage">Premium Bay</a></li>
+            <li><a href="#how-it-works">How It Works</a></li>
+            <li><a href="#contact">Get a Quote</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="footer-col-title">Contact</h3>
+          <ul class="footer-links">
+            <li><a href="tel:07879667486">07879 667 486</a></li>
+            <li><a href="mailto:akroydscaravans@gmail.com">Email Us</a></li>
+            <li><a href="#contact">Enquiry Form</a></li>
+            <li><a href="#faq">View FAQs</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <p class="footer-copy">&copy; 2026 Akroyd's Caravan Storage. All rights reserved.</p>
+        <nav class="footer-legal" aria-label="Legal">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms &amp; Conditions</a>
+        </nav>
+      </div>
+
+    </div>
+  </div>
+</footer>
+
+<!-- Back to top -->
+<button class="back-top" id="back-top" aria-label="Back to top of page">
+  <i data-lucide="chevron-up" width="20" height="20" aria-hidden="true"></i>
+</button>
+
+<script>
+  // ── Lucide icons ─────────────────────────────────────────
+  lucide.createIcons();
+
+  // ── Nav scroll state ─────────────────────────────────────
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('raised', window.scrollY > 16);
+  }, { passive: true });
+
+  // ── Mobile menu ───────────────────────────────────────────
+  const burger  = document.getElementById('nav-burger');
+  const mMenu   = document.getElementById('mobile-menu');
+  let menuOpen  = false;
+
+  function openMenu() {
+    menuOpen = true;
+    mMenu.classList.add('open');
+    burger.setAttribute('aria-expanded', 'true');
+    burger.innerHTML = '<i data-lucide="x" width="24" height="24" aria-hidden="true"></i>';
+    lucide.createIcons();
+    document.body.style.overflow = 'hidden';
+  }
+  function closeMenu() {
+    menuOpen = false;
+    mMenu.classList.remove('open');
+    burger.setAttribute('aria-expanded', 'false');
+    burger.innerHTML = '<i data-lucide="menu" width="24" height="24" aria-hidden="true"></i>';
+    lucide.createIcons();
+    document.body.style.overflow = '';
+  }
+
+  burger.addEventListener('click', () => menuOpen ? closeMenu() : openMenu());
+  document.querySelectorAll('.m-link').forEach(l => l.addEventListener('click', closeMenu));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && menuOpen) closeMenu(); });
+
+  // ── FAQ accordion ─────────────────────────────────────────
+  document.querySelectorAll('.faq-trigger').forEach(trigger => {
+    trigger.addEventListener('click', () => {
+      const item   = trigger.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+
+      // Close all
+      document.querySelectorAll('.faq-item').forEach(i => {
+        i.classList.remove('open');
+        i.querySelector('.faq-trigger').setAttribute('aria-expanded', 'false');
+      });
+
+      // Toggle clicked
+      if (!isOpen) {
+        item.classList.add('open');
+        trigger.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+
+  // ── Scroll reveal ─────────────────────────────────────────
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -32px 0px' });
+
+  revealEls.forEach(el => io.observe(el));
+
+  // Hero elements immediately visible
+  setTimeout(() => {
+    document.querySelectorAll('.hero .reveal').forEach(el => el.classList.add('in'));
+  }, 80);
+
+  // ── Back to top ───────────────────────────────────────────
+  const btt = document.getElementById('back-top');
+  window.addEventListener('scroll', () => {
+    btt.classList.toggle('show', window.scrollY > 480);
+  }, { passive: true });
+  btt.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+  // ── Smooth scroll anchor links ────────────────────────────
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const href = a.getAttribute('href');
+      if (href === '#') return;
+      const target = document.querySelector(href);
+      if (!target) return;
+      e.preventDefault();
+      const navH = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-h'));
+      const top  = target.getBoundingClientRect().top + window.scrollY - navH - 12;
+      window.scrollTo({ top, behavior: 'smooth' });
+      if (menuOpen) closeMenu();
+    });
+  });
+
+  // ── Form submit (demo) ────────────────────────────────────
+  document.getElementById('enquiry-form').addEventListener('submit', e => {
+    e.preventDefault();
+    const btn = e.target.querySelector('[type="submit"]');
+    const originalHTML = btn.innerHTML;
+    btn.disabled = true;
+    btn.style.background = '#22c55e';
+    btn.style.borderColor = '#22c55e';
+    btn.style.color = '#fff';
+    btn.innerHTML = `
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+      Enquiry Sent — We'll be in touch soon!
+    `;
+    // Reset after 5s
+    setTimeout(() => {
+      btn.disabled = false;
+      btn.style.background = '';
+      btn.style.borderColor = '';
+      btn.style.color = '';
+      btn.innerHTML = originalHTML;
+      lucide.createIcons();
+      e.target.reset();
+    }, 5000);
+  });
+</script>
+
+</body>
+</html>
